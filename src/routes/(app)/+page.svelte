@@ -1,22 +1,19 @@
 <script lang="ts">
-import * as Card from "$lib/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import FoodCard from "@/components/food-card.svelte";
 
 const { data } = $props();
 </script>
 
 <div class="relative flex-1">
-	<!-- <Card.Root class="absolute left-0 top-0 z-50 m-2 p-2">
-		<Card.Header>
-			<Card.Title>Card Title</Card.Title>
-			<Card.Description>Card Description</Card.Description>
-		</Card.Header>
-		<Card.Content>
-			<p>Card Content</p>
-		</Card.Content>
-		<Card.Footer>
-			<p>Card Footer</p>
-		</Card.Footer>
-	</Card.Root>
-	<Map></Map> -->
+	{#await data.foods}
+		<p>Loading...</p>
+	{:then foods}
+		{#if foods}
+			<div class="p-4 w-full gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6">
+				{#each foods as food}
+					<FoodCard {food}></FoodCard>
+				{/each}
+			</div>
+		{/if}
+	{/await}
 </div>

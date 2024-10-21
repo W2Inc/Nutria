@@ -45,7 +45,6 @@ export const actions: Actions = {
 	update: async (event) => {
 		const { evt, form } = await validateEventForm(event, updateSchema);
 		if (!form.success) {
-			console.log(form.error.issues);
 			return Toasty.bad(400, form.error.issues);
 		}
 

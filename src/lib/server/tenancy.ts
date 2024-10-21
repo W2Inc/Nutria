@@ -116,8 +116,6 @@ namespace Tenants {
 	 * @returns The tenant or undefined.
 	 */
 	export async function fromDomain(ctx: LandlordContext, domain: URL) {
-		console.log(domain)
-
 		return ctx.db.query.tenants.findFirst({
 			where: eq(tenants.domain, domain.hostname.split('.')[0]),
 		});

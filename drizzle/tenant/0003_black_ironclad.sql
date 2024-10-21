@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "containsPalmoil" boolean DEFAULT false;

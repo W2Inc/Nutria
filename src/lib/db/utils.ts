@@ -10,6 +10,7 @@ import {
 	type PgColumnBuilderBase,
 } from "drizzle-orm/pg-core";
 import jwt from "jsonwebtoken";
+import { URL } from "url";
 
 // ============================================================================
 
@@ -104,5 +105,20 @@ export const jwtEncoded = customType<{ data: string }>({
 	},
 	toDriver(value: string) {
 		return jwt.sign(value, process.env.APP_SECRET ?? "");
+	},
+});
+
+/**
+ * Special column to encode and decode a URL.
+ */
+export const urlType = customType<{ data: URL | string }>({
+	dataType() {
+		return "text";
+	},
+	fromDriver(value: unknown) {
+		return new URL(value as string);
+	},
+	toDriver(value: URL | string) {
+		return value.toString();
 	},
 });

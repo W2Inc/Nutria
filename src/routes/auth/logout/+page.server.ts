@@ -10,13 +10,6 @@ import { Auth } from "@/server/auth";
 // ============================================================================
 
 export const load: PageServerLoad = async ({}) => {
-	// if (!locals.session) {
-	// 	return fail(400, { message: "No session" });
-	// }
-
-	// await lucia.invalidateSession(locals.session.id);
-	// cookies.delete(lucia.sessionCookieName, { path: "/" });
-	// return { }
 	redirect(302, "/");
 };
 
@@ -25,8 +18,6 @@ export const actions: Actions = {
 		if (!locals.session) {
 			return fail(400, { message: "No session" });
 		}
-
-		console.log("yeet");
 
 		await Auth.invalidateSession(locals.context, locals.session.id);
 		Auth.deleteCookie(cookies);

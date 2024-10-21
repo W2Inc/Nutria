@@ -8,7 +8,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { join } from "node:path";
 import { readdir } from "node:fs/promises";
-import { tenants } from "../../src/lib/db/schemas/landlord";
+import { DietType, NutriscoreType, products } from "../../src/lib/db/schemas/tenant";
 import { type Connection } from ".";
 
 // SQL Scripts
